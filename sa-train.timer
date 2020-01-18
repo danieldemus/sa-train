@@ -1,0 +1,10 @@
+[Unit]
+Description=Spamassassin Train Timer
+
+[Timer]
+OnBootSec=5min
+OnCalendar=*-*-* 03:40:00
+Unit=sa-train.target
+
+[Install]
+WantedBy=basic.target

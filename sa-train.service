@@ -1,0 +1,9 @@
+[Unit]
+DescriptionExecutes sa-learn for each folder in each member of a given group Maildir folder
+Wants=sa-train.timer
+
+[Service]
+ExecStart=/usr/bin/sa-train.sh
+
+[Install]
+WantedBy=sa-train.target
