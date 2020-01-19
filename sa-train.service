@@ -1,5 +1,5 @@
 [Unit]
-DescriptionExecutes sa-learn for each folder in each member of a given group Maildir folder
+Description=Executes sa-learn for each folder in each member of a given group Maildir folder
 Wants=sa-train.timer
 
 [Service]
