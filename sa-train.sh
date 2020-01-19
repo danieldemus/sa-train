@@ -6,7 +6,7 @@ fi
 
 if [ -r /etc/sa-train.conf ]; then
     while read -r name value; do
-        if [[ ! "$name" =~ "$\w*#" ]]; then
+        if [[ -n "$name" && ! "$name" =~ "$\w*#" ]]; then
             typeset "$name=$value"
         fi
     done < /etc/sa-train.conf

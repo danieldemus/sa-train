@@ -23,7 +23,7 @@ typeset -i "MAX_AGE=${max_age:-90}"
 function examine
 {
   local subdir=$1
-  if [[ -n "$subdir" -a "$subdir" == "${subdir%/}" ]]; then
+  if [[ -n "$subdir" && "$subdir" == "${subdir%/}" ]]; then
     subdir="$subdir/"
   fi
   if [[ ! -d ./${subdir}cur ]]; then
