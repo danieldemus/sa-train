@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 if [ "$(id -u)" != "0" ]; then
     echo "This script must be run as root"
     exit 1
@@ -6,7 +6,7 @@ fi
 
 if [ -r /etc/sa-train.conf ]; then
     while read -r name value; do
-        if [[ -n "$name" && ! "$name" =~ "$\w*#" ]]; then
+        if [[ -n "$name" && ! "$name" =~ ^\s*# ]]; then
             typeset "$name=$value"
         fi
     done < /etc/sa-train.conf
@@ -21,6 +21,6 @@ if [ -z "$SPAMMED_USERS" ]; then
     exit 2
 fi
 
-for USERNAME in "$SPAMMED_USERS"; do
-    sudo -U $USERNAME -H /usr/bin/sa-train-user.sh
+for USERNAME in $SPAMMED_USERS; do
+    sudo --login --non-interactive --user=$USERNAME /usr/bin/sa-train-user.sh
 done

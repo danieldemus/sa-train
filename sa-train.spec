@@ -5,9 +5,9 @@ Summary:        Run sa-learn on all mailbox folders for users that are members o
 
 License:        GPL-v3
 URL:            https://github.com/danieldemus/sa-train
-Source0:        https://github.com/danieldemus/sa-train/archive/master.zip
+Source0:        https://github.com/danieldemus/sa-train/archive/%{Version}.tar.gz
 
-Requires:       sudo coreutils findutils spamassassin
+Requires:       bash sudo coreutils findutils spamassassin
 BuildArch:      noarch
 
 %description
@@ -40,6 +40,7 @@ install sa-train-user.sh %{buildroot}%{_bindir}/sa-train-user.sh
 
 #README
 install -m644 README.md %{buildroot}%{_pkgdocdir}
+install -m644 LICENSE %{buildroot}%{_pkgdocdir}
 
 #Config file
 install sa-train.conf %{buildroot}%{_sysconfdir}/sa-train.conf
@@ -63,6 +64,7 @@ install -Dpm 644 sa-train-group.conf %{buildroot}%{_sysusersdir}/
 
 %files
 %doc %{_pkgdocdir}/README.md
+%license %{_pkgdocdir}/LICENSE
 %defattr(0644,root,root,0755)
 %config(noreplace) %{_sysconfdir}/sa-train.conf
 
