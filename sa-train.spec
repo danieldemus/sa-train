@@ -1,11 +1,11 @@
 Name:           sa-train
-Version:        1.0.0        
+Version:        1.0.1        
 Release:        1%{?dist}
 Summary:        Run sa-learn on all mailbox folders for users that are members of the certain group.
 
 License:        GPL-v3
 URL:            https://github.com/danieldemus/sa-train
-Source0:        https://github.com/danieldemus/sa-train/archive/%{Version}.tar.gz
+Source0:        https://github.com/danieldemus/sa-train/archive/%{version}.tar.gz
 
 Requires:       bash sudo coreutils findutils spamassassin
 BuildArch:      noarch
@@ -21,7 +21,7 @@ that needs to be manually categorised by being moved into Spam or another folder
 All the specific names can be configured.
 
 %prep
-%setup -c sa-learn-%{Version}
+%setup -c sa-learn-%{version}
 
 %build
 
@@ -34,7 +34,7 @@ mkdir -p %{buildroot}%{_bindir} \
          %{buildroot}%{_pkgdocdir} \
          %{buildroot}%{_sysusersdir}
 
-cd sa-train-master
+cd sa-train-%{version}
 install sa-train.sh %{buildroot}%{_bindir}/sa-train.sh
 install sa-train-user.sh %{buildroot}%{_bindir}/sa-train-user.sh
 
@@ -43,7 +43,7 @@ install -m644 README.md %{buildroot}%{_pkgdocdir}
 install -m644 LICENSE %{buildroot}%{_pkgdocdir}
 
 #Config file
-install sa-train.conf %{buildroot}%{_sysconfdir}/sa-train.conf
+install -m644 sa-train.conf %{buildroot}%{_sysconfdir}/sa-train.conf
 
 # Systemd
 install -m644 sa-train.service %{buildroot}%{_unitdir}/%{name}.service
